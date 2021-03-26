@@ -92,7 +92,7 @@ describe JWPlayer::API::Client do
 
     describe '#escape (steps 1 & 2)' do
       it 'should encode URL parameters' do
-        expect(client.send(:escape, 'démo')).to eql('d%C3%A9mo')
+        expect(client.send(:escape, 'démo param')).to eql('d%C3%A9mo%20param')
       end
     end
 
