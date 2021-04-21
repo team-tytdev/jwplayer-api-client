@@ -10,7 +10,7 @@ module JWPlayer
     class Client
       ALLOWED_KEYS = [:format, :key, :nonce, :timestamp]
       IGNORED_KEYS = [:host, :scheme, :secret, :signature, :version]
-      # ESCAPE_REGEX = /[^a-z0-9\-\.\_\~]/i # http://oauth.net/core/1.0/#encoding_parameters
+      ESCAPE_REGEX = /[^a-z0-9\-\.\_\~]/i # http://oauth.net/core/1.0/#encoding_parameters
 
       attr_reader :params, :options
 
@@ -82,7 +82,7 @@ module JWPlayer
       # 2. All text parameters URL-encoded
       #
       def escape(value)
-        ::Addressable::URI.escape(value.to_s)
+        ::Addressable::URI.encode_component(value.to_s, ESCAPE_REGEX)
       end
 
       #
